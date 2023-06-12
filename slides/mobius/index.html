@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>基础莫反与杜教筛</title>
+		<link rel="stylesheet" href="../dist/reset.css">
+		<link rel="stylesheet" href="../dist/reveal.css">
+		<link rel="stylesheet" href="../dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../plugin/highlight/monokai.css">
+		<style type="text/css">
+			.ha{
+				font-size: 20px;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<p class="ha">
+			切换方式：
+		    <a href="?transition=none#/transitions" class="ha">None</a> &nbsp
+		    <a href="?transition=fade#/transitions" class="ha">Fade</a> &nbsp
+		    <a href="?transition=slide#/transitions" class="ha">Slide</a> &nbsp
+		    <a href="?transition=convex#/transitions" class="ha">Convex</a> &nbsp
+		    <a href="?transition=concave#/transitions" class="ha">Concave</a> &nbsp
+		    <a href="?transition=zoom#/transitions" class="ha">Zoom</a>
+		</p>-->
+		<div class="reveal">
+			<div class="slides" >     
+				<section>
+					<h2>基础莫反与杜教筛</h2>
+					<h3 class="fragment">SDFZ_Obvious</h3>
+				</section>
+				<section>
+					<section>
+						<h2>提前说说</h2>
+					</section>
+					<section>
+						<h3>都是蒟蒻最近切的非常水的题目</h3>
+					</section>
+				</section>
+				<section>
+					<h3>莫反的原理</h3>
+					<p class="fragment">想必大家都已经完全学会了，我只补充几点</p>
+					<p class="fragment">为什么莫反是对的？</p>
+					<p class="fragment">$\mu*1=\epsilon$ 的另一种证法</p>
+					<p class="fragment">$\varphi*1=id$</p>
+				</section>
+				<section>
+					<h2>进入正题</h2>
+				</section>
+                <section>
+                    <section>
+                        <h3>P3327 [SDOI2015]约数个数和 </h3>
+                        <p class="fragment">求 $\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}d(ij)$</p>
+                    </section>
+                    <section>
+                        <h3>一个小结论</h3>
+                        <p class="fragment">$d(ij)=\sum\limits_{x|i}\sum\limits_{y|j}[\gcd(x,y)=1]$</p>
+                        <p class="fragment">大家感性理解一下就行了，有兴趣可以证一下</p>
+                    </section>
+                    <section>
+                        <h3>推式子！</h3>
+                        <p class="fragment"> $=\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}\sum\limits_{x|i}\sum\limits_{y|j}[\gcd(x,y)=1] $$=\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}\sum\limits_{x|i}\sum\limits_{y|j}\sum\limits_{d|\gcd(x,y)}\mu(d)$</p>
+                        <p class="fragment"> $=\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}\sum\limits_{x|i}\sum\limits_{y|j}\sum\limits_{d=1}^{min(n,m)}\mu(d)[d|\gcd(x,y)]$</p>
+                        <p class="fragment">$=\sum\limits_{d=1}^{min(m,n)}\mu(d)\sum\limits_{x=1}^{n}\sum\limits_{y=1}^{m}[d|\gcd(i,j)]\lfloor\dfrac{n}{x}\rfloor\lfloor\dfrac{m}{y}\rfloor$</p>
+                        <p class="fragment"> $=\sum\limits_{d=1}^{min(m,n)}\mu(d)\sum\limits_{x=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{y=1}^{\lfloor\frac{m}{d}\rfloor}\lfloor\dfrac{n}{dx}\rfloor\lfloor\dfrac{m}{dy}\rfloor$</p>
+                        <p class="fragment"> $=\sum\limits_{d=1}^{min(m,n)}\mu(d)\sum\limits_{x=1}^{\lfloor\frac{n}{d}\rfloor}\lfloor\dfrac{n}{dx}\rfloor\sum\limits_{y=1}^{\lfloor\frac{m}{d}\rfloor}\lfloor\dfrac{m}{dy}\rfloor$</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>P1829 [国家集训队]Crash的数字表格 / JZPTAB  </h3>
+                        <p class="fragment">求 $\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}lcm(i,j)$</p>
+                    </section>
+                    <section>
+                        <h3>十分显然</h3>
+                        <p class="fragment">$=\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}\dfrac{ij}{\gcd(i,j)}$</p>
+                    </section>
+                    <section>
+                        <h3>推式子！</h3>
+                        <p class="fragment"> $=\sum\limits_{d=1}^{min(n,m)}\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}\dfrac{ij}{d}[\gcd(i,j)=d]$</p>
+                        <p class="fragment"> $=\sum\limits_{d=1}^{min(n,m)}d\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij[\gcd(i,j)=1]$</p>
+                        <p class="fragment">$=\sum\limits_{d=1}^{min(n,m)}d\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum\limits_{x|\gcd(i,j)}\mu(x)$</p>
+                        <p class="fragment">$=\sum\limits_{d=1}^{min(n,m)}d\sum\limits_{x=1}^{min(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)}x^2\mu(x)\sum\limits_{i=1}^{\lfloor\frac{n}{dx}\rfloor}\sum\limits_{j=1}^{\lfloor\frac{m}{dx}\rfloor}ij$</p>
+                        <p class="fragment">$=\sum\limits_{d=1}^{min(n,m)}d\sum\limits_{x=1}^{min(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)}x^2\mu(x)S(\lfloor\dfrac{n}{dx}\rfloor)S(\lfloor\dfrac{n}{dx}\rfloor)$</p>
+                    </section>
+                    <section>
+                        <p class="fragment">其中 $S(n) = \dfrac{n(n+1)}{2}$</p>
+                        <p class="fragment">令 $T = xd$,原式 $=\sum\limits_{T = 1}^{min(n,m)}S(\lfloor\dfrac{n}{T}\rfloor)S(\lfloor\dfrac{n}{T}\rfloor)\sum\limits_{dx=T}dx^2\mu(x)$</p>
+                        <p class="fragment">$=\sum\limits_{T = 1}^{min(n,m)}S(\lfloor\dfrac{n}{T}\rfloor)S(\lfloor\dfrac{n}{T}\rfloor)T\sum\limits_{x|T}x\cdot\mu(x)$</p>
+                        <p class="fragment">最后我们提前预处理 $\sum\limits_{x|T}x\cdot\mu(x)$ 就行了。</p>
+                    </section>
+                </section>
+                <section>
+                    <h3>P3911 最小公倍数之和 </h3>
+                    <p class="fragment">求 $\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}lcm(A_i,A_j)$</p>
+                    <p class="fragment">有兴趣的可以做做，这个题不需要分块，感觉推式子比前几个难，先不说了。</p>
+                </section>
+                <section>
+                    <h3>其他多倍经验：</h3>
+                    <p class="fragment">P1390 公约数的和：跟后面P1447能量采集类比一下，去掉重复的就行</p>
+                    <p class="fragment">P4450 双亲数：板子</p>
+                </section>
+                <section>
+                    <section>
+                        <h3>P1447 [NOI2010] 能量采集</h3>
+                        <p class="fragment">求 $\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}\gcd(i,j)$</p>
+                    </section>
+                    <section>
+                        <h3>我们可以考虑枚举 $\gcd$ 求和，然后套 $\mu$</h3>
+                        <p class="fragment">但这样太麻烦了</p>
+                    </section>
+                    <section>
+                        <h3>考虑带入 $\varphi*1=id$</h3>
+                    </section>
+                    <section>
+                        <h3>推式子！</h3>
+                        <p class="fragment"> $=\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}\sum\limits_{d|\gcd(i,j)}\varphi(d)$</p>
+                        <p class="fragment">就是板子！</p>
+                        <p class="fragment">$=\sum\limits_{d=1}^{\min(n,m)}\varphi(d)\lfloor\dfrac{n}{d}\rfloor\lfloor\dfrac{m}{d}\rfloor$</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>杜教筛</h3>
+                        <p class="fragment">有些时候我们需要处理一些函数前缀和，但它的取值可能比较大，传统 $O(n)$ 的处理可能会炸时间，所以就引入了杜教筛。</p>
+                    </section>
+                    <section>
+                        <p>这是一个复杂度 $O(n^{\frac{2}{3}})$ 的算法，证明很麻烦不说了。</p>
+                    </section>
+                    <section>
+                        <h3>主要思想：</h3>
+                        <p class="fragment">对于一个函数 $f(x)$ 求前缀和，我们可以考虑构造一个 $g(x)$，递推得求出 $f*g$ 的前缀和</p>
+                    </section>
+                    <section>
+                        <h3>推式子！</h3>
+                        <p class="fragment"> $S(n)=\sum\limits_{i=1}^{n}f(i),h=f*g$</p>
+                        <p class="fragment"> $\sum\limits_{i=1}^{n}h(i)=\sum\limits_{i=1}^{n}\sum\limits_{d|i}g(d)f(\dfrac{i}{d})$</p>
+                        <p class="fragment"> 考虑枚举 $d$ 和 $n$ 以内 $d$ 的倍数上式等价为：$\sum\limits_{d=1}^{n}g(d)\sum\limits_{d|i}f(\dfrac{i}{d})$</p>
+                        <p class="fragment"> 把后面的 $i$ 缩小 $d$ 消去分母：$\sum\limits_{d=1}^{n}g(d)\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}f(i)$</p>
+                        <p class="fragment"> 后面的$\sum$ 很好：$\sum\limits_{d=1}^{n}g(d)S(\lfloor\frac{n}{d}\rfloor)$</p>
+                    </section>
+                    <section>
+                        <h3>我们尝试把卷积前缀和拆分一下</h3>
+                        <p class="fragment">那就是 $\sum\limits_{i=1}^{n}h(i)=h(1)+\sum\limits_{i=2}^{n}h(i)$</p>
+                        <p class="fragment"> 继续推倒得到 $\sum\limits_{i=1}^{n}h(i)=g(1)S(n)+\sum\limits_{d=2}^{n}g(d)S(\lfloor\frac{n}{d}\rfloor)$</p>
+                        <p class="fragment"> $g(1)S(n)=\sum\limits_{i=1}^{n}h(i)-\sum\limits_{d=2}^{n}g(d)S(\lfloor\frac{n}{d}\rfloor)$</p>
+                        <p class="fragment"> $S(n)=\dfrac{\sum\limits_{i=1}^{n}h(i)-\sum\limits_{d=2}^{n}g(d)S(\lfloor\frac{n}{d}\rfloor)}{g(1)}$</p>
+                    </section>
+                    <section>
+                        <h3>于是我们就得到了杜教筛公式！</h3>
+                        <p class="fragment">我们希望 $h(i)$ 的前缀是可以 $O(1)$ 求解的，构造出来后记忆化递归求值就行</p>
+                        <p class="fragment">另外我们依旧需要提前处理一部分前缀，当递归需要的 $S(n)$ 我们提前可以预处理了，直接把数据拿来用就行</p>
+                    </section>
+                    <section>
+                        <h3>简单应用 P4213 【模板】杜教筛（Sum） </h3>
+                        <p ><span class="fragment">求 $\sum\limits_{i=1}^{n}\varphi(i)$</span><span class="fragment">考虑 $\varphi*1=id$</span></p>
+                        <p ><span class="fragment">求 $\sum\limits_{i=1}^{n}\mu(i)$</span><span class="fragment">考虑 $\mu*1=\epsilon$</span></p>
+                    </section>
+                    <section>
+                        <h3>code：</h3>
+                        <pre data-id="code-animation"><code class="cpp" data-trim data-line-numbers>
+                        void init(){
+                            ll x = N - 1;
+                            mu[1] = 1;
+                            phi[1] = 1;
+                            for(int i = 2;i <= x;i ++){
+                                if(!vis[i]){
+                                    prime[++tot] = i;
+                                    mu[i] = -1;
+                                    phi[i] = i-1;
+                                }
+                                for(int j = 1;j <= tot && i*prime[j] <= x;j ++){
+                                    vis[i*prime[j]] = 1;
+                                    if(i % prime[j] == 0){
+                                        mu[i*prime[j]] = 0;
+                                        phi[i*prime[j]] = phi[i] * prime[j];
+                                        break;
+                                    }
+                                    mu[i*prime[j]] = -mu[i];
+                                    phi[i*prime[j]] = phi[i] * phi[prime[j]];
+                                }
+                            }
+                            for(int i = 1;i <= x;i ++){
+                                mu[i] += mu[i-1];
+                                phi[i] += phi[i-1];
+                            }
+                        }
+                        inline ll gsum(int x){return x;}
+                        inline ll smu(ll x){
+                            ll ans = 1;
+                            if(x < N) return mu[x]; 
+                            if(summu[x]) return summu[x];// 记忆化搜索
+                            for(ll l = 2,r;l <= x;l = r+1){
+                                r = x/(x/l);
+                                ans -= (gsum(r) - gsum(l-1))*smu(x/l);
+                            } 
+                            return summu[x] = ans / gsum(1);//记忆化 
+                        }
+                        inline ll sphi(ll x){
+                            ll ans = (x+1)*x/2;
+                            if(x < N) return phi[x];
+                            if(sumphi[x]) return sumphi[x];
+                            for(ll l = 2,r;l <= x;l = r+1){
+                                r = x/(x/l);
+                                ans -= (gsum(r) - gsum(l-1))*sphi(x/l);
+                            }
+                            return sumphi[x] = ans / gsum(1);
+                        }
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>P3768 简单的数学题 </h3>
+                        <p class="fragment">求 $\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}ij\gcd(i,j) \bmod p$</p>
+                    </section>
+                    <section>
+                        <h3>与能量采集很类似</h3>
+                        <p class="fragment">考虑相同的带入</p>
+                    </section>
+                    <section>
+                        <h3>推式子！</h3>
+                        <p class="fragment"> $=\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}ij\sum\limits_{d|\gcd(i,j)}\varphi(d)$</p>
+                        <p class="fragment"> $=\sum\limits_{d=1}^{n}\varphi(d)\sum\limits_{d|i}^{n}\sum\limits_{d|j}^{n} ij$</p>
+                        <p class="fragment"> $=\sum\limits_{d=1}^{n}\varphi(d)d^2\sum\limits_{i=1}^{n/d}\sum\limits_{j=1}^{n/d}ij$</p>
+                        <p class="fragment"> $=\sum\limits_{d=1}^{n}\varphi(d)d^2S(n/d)^2$</p>
+                        <p class="fragment">我们发现 $=\sum\limits_{d=1}^{n}\varphi(d)d^2$ 不好维护，那就用杜教筛</p>
+                    </section>
+                    <section>
+                        <h3>构造</h3>
+                        <p class="fragment"> $f(x)=\sum\limits_{d=1}^{n}\varphi(d)d^2$,里面有 $d^2$，而且因为要卷起来，我们不妨构造 $g(d)=d^2$ 消去 $d^2$</p>
+                        <p class="fragment"> 我们发现 $h(x)=(g*f)(x)=x^3$，可以很快速维护处前缀！</p>
+                        <p class="fragment"> 带入杜教筛公式，前面直接公式处理，后面整除分块就行了</p>
+                    </section>
+                </section>
+                </section>
+			</div>
+		</div>
+
+		<script src="../dist/reveal.js"></script>
+        
+        <script src="../plugin/markdown/markdown.js"></script>
+        <script src="../plugin/highlight/highlight.js"></script>
+        <script src="../plugin/notes/notes.js"></script>
+        <script src="../plugin/math/math.js"></script>
+        <script src="../plugin/search/search.js"></script>
+        <script src="../plugin/zoom/zoom.js"></script>
+
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+                hash: true,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath, RevealSearch, RevealZoom ]
+            });
+        </script>
+	</body>
+</html>
+<!--
+说明：
+
+-->

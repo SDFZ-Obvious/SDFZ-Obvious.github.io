@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>物理项目式</title>
+		<link rel="stylesheet" href="../dist/reset.css">
+		<link rel="stylesheet" href="../dist/reveal.css">
+		<link rel="stylesheet" href="../dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../plugin/highlight/monokai.css">
+		<style type="text/css">
+			.ha{
+				font-size: 20px;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<p class="ha">
+			切换方式：
+		    <a href="?transition=none#/transitions" class="ha">None</a> &nbsp
+		    <a href="?transition=fade#/transitions" class="ha">Fade</a> &nbsp
+		    <a href="?transition=slide#/transitions" class="ha">Slide</a> &nbsp
+		    <a href="?transition=convex#/transitions" class="ha">Convex</a> &nbsp
+		    <a href="?transition=concave#/transitions" class="ha">Concave</a> &nbsp
+		    <a href="?transition=zoom#/transitions" class="ha">Zoom</a>
+		</p>-->
+		<div class="reveal">
+			<div class="slides" >     
+				<section>
+					<h1>物理项目式：制作电子贺卡</h1>
+					<h3 class="fragment">成员：</h3>
+				</section>
+				<section>
+					<section>
+						<h2>说句闲话：</h2>
+					</section>
+					<section>
+						<h3>学习珂学的最好方法是：A了这道题，祝你们成功（滑稽</h3>
+					</section>
+				</section>
+				<section>
+					<h3>所需的材料</h3>
+					<li class="fragment">$3V$ 纽扣电池</li>
+					<li class="fragment">发光二极管</li>
+					<li class="fragment">铜胶带</li>
+					<li class="fragment">卡纸</li>
+					<li class="fragment">必要工具</li>
+					<li class="fragment">作用隐约的东西：看下一页</li>
+				</section>
+				<section>
+					<h3>作用隐约的东西</h3>
+					<li class="fragment">面包板：简单地去模拟一下设计的电路</li>
+					<li class="fragment">三极管：搞一些模拟电路整活</li>
+					<li class="fragment">电烙铁：比铜胶带结实多了</li>
+					<li class="fragment">单片机：更好的控制你的电路</li>
+					<li class="fragment">florr.io：不要看，不小心打上的</li>
+				</section>
+				<section>
+					<section>
+						<h2>进入正题</h2>
+					</section>
+					<section>
+						<h3>关于电路设计</h3>
+						<p class="fragment">首先，为了让制作出来的电子贺卡更加稳定且耐用，显然我们整个电路用电器主要得是并联的。</p>
+						<p class="fragment">其次，为了省电我们需要让贺卡关闭时电路断开，打开时电路联通</p>
+					</section>
+					<section>
+						<h3>所以我们是这样设计的：</h3>
+						<img src="img/way.png" alt="">
+					</section>
+					<section>
+						<h3>这个电路似乎非常的简单</h3>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>这样太丑了，美化一下</h3>
+					</section>
+					<section>
+						<h2>
+							贺卡设计：
+						</h2>
+						<p class="fragment">把一张 $A4$ 卡纸折叠起来，再用半张卡纸与其中半面粘合做夹层，中间防治电路，在夹层的卡纸上打几个空，将发光二极管从空中穿过即可。</p>
+					</section>
+					<section>
+						<h3>
+							于是我们发现它又非常简单
+						</h3>
+					</section>
+					<section>
+						所以我们把它改成了立体的。
+						并画了写作用隐约的画。
+						并写了些作用隐约的字。
+					</section>
+				</section>
+				<section>
+					<h2>
+						于是我们发现贺卡似乎已经完成了。
+					</h2>
+				</section>
+				<section>
+					<h1>Thanks for listening!!</h1>
+				</section>
+				<section>
+					<h1>pwered by reveal.js</h1>
+				</section>
+				<section>
+					<h2>我们发现进度条还没到头,其实有好康的</h2>
+				</section>
+				<section data-background-iframe="https://florr.io/" data-background-interactive></section>
+			</div>
+		</div>
+
+		<script src="../dist/reveal.js"></script>
+        
+        <script src="../plugin/markdown/markdown.js"></script>
+        <script src="../plugin/highlight/highlight.js"></script>
+        <script src="../plugin/notes/notes.js"></script>
+        <script src="../plugin/math/math.js"></script>
+        <script src="../plugin/search/search.js"></script>
+        <script src="../plugin/zoom/zoom.js"></script>
+
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+                hash: true,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath, RevealSearch, RevealZoom ]
+            });
+        </script>
+	</body>
+</html>
+<!--
+说明：
+
+-->

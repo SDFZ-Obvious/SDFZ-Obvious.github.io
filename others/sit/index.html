@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #background{
+            background-color: rgb(179, 129, 83);
+            width: 900px;
+            height: 600px;
+            margin: 10px auto;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        #background:hover{
+            box-shadow: 10px 10px 10px gray;
+        }
+        #teachertable{
+            background-color: rgb(100, 90, 31);
+            width: 200px;
+            height: 40px;
+            font-size: 40px;
+            color: aliceblue;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            margin: 10px;
+            margin: 10px auto;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        #group4{
+            background-color: green;
+            width: 100px;
+            height: 40px;
+            font-size: 40px;
+            color: aliceblue;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            margin: 10px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        #group6{
+            background-color: rgb(255, 130, 151);
+            width: 100px;
+            height: 90px;
+            font-size: 40px;
+            color: aliceblue;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            margin: 10px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        #group62{
+            background-color: rgb(255, 130, 151);
+            width: 100px;
+            height: 40px;
+            font-size: 40px;
+            color: aliceblue;
+            text-align: center;
+            padding-bottom: 10px;
+            margin: 10px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        #group64{
+            background-color: rgb(255, 130, 151);
+            height: 40px;
+            font-size: 40px;
+            color: aliceblue;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            margin: 10px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        #group42{
+            background-color: green;
+            width: 100px;
+            height: 40px;
+            font-size: 40px;
+            color: aliceblue;
+            text-align: center;
+            padding-bottom: 10px;
+            margin: 10px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">班级座位调换方法</h1>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">1组</div>
+            <div id="group4">2组</div>
+            <div id="group4">3组</div>
+            <div id="group4">4组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group4">8组</div>
+            <div id="group4">7组</div>
+            <div id="group4">6组</div>
+            <div id="group4">5组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group4">9组</div>
+            <div id="group4">10组</div>
+            <div id="group6">11组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">2组</div>
+            <div id="group4">3组</div>
+            <div id="group4">4组</div>
+            <div id="group4">5组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group4">9组</div>
+            <div id="group4">8组</div>
+            <div id="group4">7组</div>
+            <div id="group4">6组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group4">10组</div>
+            <div id="group6">11组</div>
+            <div id="group4">1组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">3组</div>
+            <div id="group4">4组</div>
+            <div id="group4">5组</div>
+            <div id="group4">6组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group4">10组</div>
+            <div id="group4">9组</div>
+            <div id="group4">8组</div>
+            <div id="group4">7组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group6">11组</div>
+            <div id="group4">1组</div>
+            <div id="group4">2组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">4组</div>
+            <div id="group4">5组</div>
+            <div id="group4">6组</div>
+            <div id="group4">7组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group64">11组</div>
+            <div id="group4">10组</div>
+            <div id="group4">9组</div>
+            <div id="group4">8组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group62">11组</div>
+            <div id="group4">1组</div>
+            <div id="group4">2组</div>
+            <div id="group4">3组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">5组</div>
+            <div id="group4">6组</div>
+            <div id="group4">7组</div>
+            <div id="group4">8组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group42">1组</div>
+            <div id="group6">11组</div>
+            <div id="group4">10组</div>
+            <div id="group4">9组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group42">1组</div>
+            <div id="group4">2组</div>
+            <div id="group4">3组</div>
+            <div id="group4">4组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">6组</div>
+            <div id="group4">7组</div>
+            <div id="group4">8组</div>
+            <div id="group4">9组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group42">2组</div>
+            <div id="group4">1组</div>
+            <div id="group6">11组</div>
+            <div id="group4">10组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group42">2组</div>
+            <div id="group4">3组</div>
+            <div id="group4">4组</div>
+            <div id="group4">5组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">7组</div>
+            <div id="group4">8组</div>
+            <div id="group4">9组</div>
+            <div id="group4">10组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group42">3组</div>
+            <div id="group4">2组</div>
+            <div id="group4">1组</div>
+            <div id="group6">11组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group42">3组</div>
+            <div id="group4">4组</div>
+            <div id="group4">5组</div>
+            <div id="group4">6组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">8组</div>
+            <div id="group4">9组</div>
+            <div id="group4">10组</div>
+            <div id="group64">11组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group42">4组</div>
+            <div id="group4">3组</div>
+            <div id="group4">2组</div>
+            <div id="group4">1组</div>
+            <div id="group62">11组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group42">4组</div>
+            <div id="group4">5组</div>
+            <div id="group4">6组</div>
+            <div id="group4">7组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">9组</div>
+            <div id="group4">10组</div>
+            <div id="group6">11组</div>
+            <div id="group42">1组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group42">5组</div>
+            <div id="group4">4组</div>
+            <div id="group4">3组</div>
+            <div id="group4">2组</div>
+            <div id="group42">1组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group42">5组</div>
+            <div id="group4">6组</div>
+            <div id="group4">7组</div>
+            <div id="group4">8组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">10组</div>
+            <div id="group6">11组</div>
+            <div id="group4">1组</div>
+            <div id="group42">2组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group42">6组</div>
+            <div id="group4">5组</div>
+            <div id="group4">4组</div>
+            <div id="group4">3组</div>
+            <div id="group42">2组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group42">6组</div>
+            <div id="group4">7组</div>
+            <div id="group4">8组</div>
+            <div id="group4">9组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group6">11组</div>
+            <div id="group4">1组</div>
+            <div id="group4">2组</div>
+            <div id="group42">3组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group42">7组</div>
+            <div id="group4">6组</div>
+            <div id="group4">5组</div>
+            <div id="group4">4组</div>
+            <div id="group42">3组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group42">7组</div>
+            <div id="group4">8组</div>
+            <div id="group4">9组</div>
+            <div id="group4">10组</div>
+        </div>
+    </div>
+    <div id="background">
+        <div id="teachertable">讲台</div>
+        <div style="float: left;">
+            <div id="group4">1组</div>
+            <div id="group4">2组</div>
+            <div id="group4">3组</div>
+            <div id="group4">4组</div>
+        </div>
+        <div style="float: left;margin-left: 270px;">
+            <div id="group4">8组</div>
+            <div id="group4">7组</div>
+            <div id="group4">6组</div>
+            <div id="group4">5组</div>
+        </div>
+        <div style="float: right;">
+            <div id="group4">9组</div>
+            <div id="group4">10组</div>
+            <div id="group6">11组</div>
+        </div>
+    </div>
+</html> 
