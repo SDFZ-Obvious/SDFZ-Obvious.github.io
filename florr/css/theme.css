@@ -4,7 +4,7 @@
     font-family:等线宽light;
 }
 body{
-    background-color: #f0f0f0;
+    background-color: #A0f0A0;
 }
 header{
     position: fixed;
@@ -12,9 +12,9 @@ header{
     left: 0;
     right: 0;
     height: 53px;
-    background-color: #ffffff;
+    background-color: #ddffdd;
     margin-bottom: 30px;
-    box-shadow: 0px 0px 10px #a1a1a1;
+    box-shadow: 0px 0px 10px #90a190;
 }
 #block_hd{
     width: 90px;
@@ -36,14 +36,14 @@ header{
 footer{
     margin-top: 30px;
     height: 250px;
-    background-color:#ffffff;
+    background-color:#ddffdd;
     box-shadow: 0px 0px 10px #a1a1a1;
 }
 article{
     margin:30px auto;
     margin-top: 83px;
     width: 1360px;
-    background-color:#ffffff;
+    background-color:#ddffdd;
     box-shadow: 0px 0px 10px #a1a1a1;
     padding: 20px;
     line-height: 210%;
