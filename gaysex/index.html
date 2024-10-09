@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #title{
+            padding-top: 20px;
+            font-family: 黑体;
+            font-size: 50px;
+            text-align: center;
+            text-shadow: 5px 5px 5px #555;
+            font-weight: bold;
+        }
+        #Classroom{
+            background-color: #777;
+            width: 700px;
+            height: 770px;
+            margin-left: 200px;
+            margin-top: 20px;
+            float: left;
+            border: solid #222;
+            box-shadow: 10px 10px 10px black;
+        }
+        .desk{
+            margin-top: 70px;
+            margin-left: 5px;
+            background-color: #ddd;
+            width: 85px;
+            height: 40px;
+            float: left;
+            border: solid #fff;
+            box-shadow: 5px 5px 5px #000;
+            text-align: center;
+            padding-top: 20px;
+            font-weight: bold;
+        }
+        #block{
+            margin-top: 70px;
+            width: 58px;
+            height: 60px;
+            float: left;
+        }
+        #td{
+            margin-left: 100px;
+            background-color: #995c00;
+            width: 500px;
+            height: 50px;
+            border: solid #ffae00;
+            box-shadow: 5px 5px 5px #000;
+            margin-bottom: 80px;
+        }
+        button{
+            margin-top: 400px;
+            margin-left: 300px;
+            width: 200px;
+            height: 100px;
+            font-size: 60px;
+        }
+    </style>
+    <script>
+        function rand(minNum,maxNum){ 
+            switch(arguments.length){ 
+                case 1: 
+                    return parseInt(Math.random()*minNum+1,10); 
+                break; 
+                case 2: 
+                    return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
+                break; 
+                    default: 
+                        return 0; 
+                    break; 
+            } 
+        } 
+        var ppl = 0;
+        var vis = new Array();
+        for(i = 0;i < 24;i ++)vis[i] = 0;
+        function get(){
+            var name = new Array();
+            name[0] = "曹曲一";
+            name[1] = "秦高原";
+            name[2] = "陈楷文";
+            name[3] = "王清植";
+            name[4] = "王子熙";
+            name[5] = "王铭熙";
+            name[6] = "王概呈";
+            name[7] = "刘天睿";
+            name[8] = "薛凯泽";
+            name[9] = "闫辛祎";
+            name[10] = "潘悦翔";
+            name[11] = "吴怀安东";
+            name[12] = "刘思彤";
+            name[13] = "陈丁";
+            name[14] = "曲歌";
+            name[15] = "曹煜国";
+            name[16] = "郝康睿";
+            name[17] = "王安然";
+            name[18] = "宋湉昕";
+            name[19] = "张淑怡";
+            name[20] = "丛天淇";
+            name[21] = "张龙轩";
+            name[22] = "熊梓芳";
+            name[23] = "温博皓";
+            if(ppl > 23){
+                alert("N0 m0r3 ppl 4v4l14bl3!");
+                return;
+            }
+            id = 0;
+            while(1){
+                id = rand(0,23);
+                vis[id] = vis[id] + 1;
+                console.log(id);
+                console.log(vis[id]); 
+                if(vis[id] <= 1)break;
+            }
+            node=document.getElementsByClassName("desk");  //查找元素
+            node[id].innerHTML=name[ppl];    //改变内容 
+            ppl ++;
+        }
+    </script>
+    <title>seat-selector</title>
+</head>
+<body>
+    <section id = "title"><h1> G3t 4 R4nd0m S34t F0r G4y S3x!</h1></section>
+    <div id = "Classroom">
+        <div id = "td"></div>
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+        <div id = "block"></div>
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+        <div id = "block"></div>
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+        
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+        <div id = "block"></div>
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+        <div id = "block"></div>
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+        <div id = "block"></div>
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+        <div id = "block"></div>
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+        <div id = "block"></div>
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+        <div id = "block"></div>
+        <div class = "desk"></div>
+        <div class = "desk"></div>
+    </div>
+    <button onclick="get()">G3t!</button>
+</body>
+</html>

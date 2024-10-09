@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>基础莫反与杜教筛</title>
+		<link rel="stylesheet" href="../dist/reset.css">
+		<link rel="stylesheet" href="../dist/reveal.css">
+		<link rel="stylesheet" href="../dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../plugin/highlight/monokai.css">
+		<style type="text/css">
+			.ha{
+				font-size: 20px;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<p class="ha">
+			切换方式：
+		    <a href="?transition=none#/transitions" class="ha">None</a> &nbsp
+		    <a href="?transition=fade#/transitions" class="ha">Fade</a> &nbsp
+		    <a href="?transition=slide#/transitions" class="ha">Slide</a> &nbsp
+		    <a href="?transition=convex#/transitions" class="ha">Convex</a> &nbsp
+		    <a href="?transition=concave#/transitions" class="ha">Concave</a> &nbsp
+		    <a href="?transition=zoom#/transitions" class="ha">Zoom</a>
+		</p>-->
+		<div class="reveal">
+			<div class="slides" >     
+				<section>
+					<h2>Internet & FFT</h2>
+					<h3 class="fragment">Obvious</h3>
+				</section>
+				<section>
+					<section>
+						<h2>What's the FFT?</h2>
+					</section>
+					<section>
+						<p>FFT(Fast Fourier Transform), an algorithm invented by Fourier, always be used to calculate polynomial multiplication with large data range.</p>
+                        <p>In this days, the main principles of FFT, such as Butterfly Transformation and Polynomial to Point Value, make a great difference in Compute Science and Network data processing.</p>
+					</section>
+				</section>
+				<section>
+					<h2>How FFT works?</h2>
+				</section>
+				<section>
+					<h3>Recalling how you calculated polynomial multiplication in middle school</h3>
+				</section>
+                <section>
+                    <section>
+                        <h3>Must ne like this!</h3>
+                        <img src="https://cdn.luogu.com.cn/upload/image_hosting/e6nfaxxw.png">
+                        <p>We calculate all the terms one by one!</p>
+                    </section>
+                    <section>
+                        <p>Now we have $2$ polynomial $F$ and $G$</p>
+                        <p>$F(x)=f_0x^0+f_1x^1+f_2x^2+\cdots+f_nx^n$</p>
+                        <p>$G(x)=g_0x^0+g_1x^1+g_2x^2+\cdots+g_nx^n$</p>
+                        <p class="fragment">So it is:</p>
+                        <p class="fragment">$F(x)=\sum_{i=0}^nf_ix^i$<br><br>$G(x)=\sum_{i=0}^ng_ix^i$</p>
+                    </section>
+                    <section>
+                        <p>Succeeding the previous idea, we get:</p>
+                        <p class="fragment">$(F\times G)(x) = \left(\sum_{i=0}^nf_ix^i\right)\cdot\left(\sum_{i=0}^ng_ix^i\right)$</p>
+                        <p class="fragment">So ugly, right?Consider contributions!</p>
+                        <p class="fragment">$(F\times G)(x)=\sum_{i=0}^n\sum_{k}f_ig_{i-k}x^i$</p>
+                    </section>
+                    <section>
+                        <p>Get the $i$th term:</p>
+                        <p class="fragment">$[x^k](F\times G)=\sum_{k}f_ig_{i-k}x^i$</p>
+                        <p class="fragment">We will refer to the above equation as $convolution$.</p>
+                        <p class="fragment">$F*G = \sum\limits_{i+j=k}F_iG_j$</p>
+                    </section>
+                </section>
+                <section>
+                    <p>We've got a beautiful formula.But it is still slow to calculate.The time complexity is $O(n^2)$.In fact, FFT can do this in $O(n\log n)$</p>
+                </section>
+                <section>
+                    <h3>We should chage our mind!</h3>
+                    <p class="fragment">Simple simplification formulas cannot solve this problem. So consider using point values to represent polynomials.</p>
+                    <p></p>
+                </section>
+                    <section>
+                        <h3>code：</h3>
+                        <pre data-id="code-animation"><code class="cpp" data-trim data-line-numbers>
+                        
+			</div>
+		</div>
+     <!--  
+         <script>
+            window.onload=function(){
+                alert("goushi");
+            }
+        -->
+        </script>
+		<script src="../dist/reveal.js"></script>
+        
+        <script src="../plugin/markdown/markdown.js"></script>
+        <script src="../plugin/highlight/highlight.js"></script>
+        <script src="../plugin/notes/notes.js"></script>
+        <script src="../plugin/math/math.js"></script>
+        <script src="../plugin/search/search.js"></script>
+        <script src="../plugin/zoom/zoom.js"></script>
+
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+                hash: true,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath, RevealSearch, RevealZoom ]
+            });
+        </script>
+	</body>
+</html>
+<!--
+说明：
+
+-->
