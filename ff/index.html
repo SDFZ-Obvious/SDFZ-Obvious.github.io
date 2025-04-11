@@ -1,30 +1,438 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music of Class 1!</title>
+    <title>音乐网站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        *{
-            padding: 0;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        audio{
-            width: 300px;
+
+        /* 头部样式 */
+        header {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* 主内容样式 */
+        main {
+            max-width: 1200px;
+            margin: 80px auto 100px;
+            padding: 20px;
+        }
+
+        .song-list {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .song-list th, .song-list td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .song-list th {
+            background: #f8f9fa;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .song-list tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* 按钮样式 */
+        .action-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .play-audio {
+            background: #3498db;
+            color: white;
+        }
+
+        .play-audio:hover {
+            background: #2980b9;
+        }
+
+        .play-mv {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .play-mv:hover {
+            background: #c0392b;
+        }
+
+        /* 控制器样式 */
+        #audio-controller {
+            position: fixed;
+            bottom: -100px;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            padding: 15px 30px;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.1);
+            transition: bottom 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .controller-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        #progress-bar {
+            flex: 2;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #progress {
+            height: 100%;
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+            border-radius: 3px;
+            width: 0;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            font-size: 0.9em;
+            color: #666;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100px;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: #3498db;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        input[type="range"]:hover::-webkit-slider-thumb {
+            background: #2980b9;
+        }
+
+        select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-icon {
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .volume-icon:hover {
+            color: #3498db;
         }
     </style>
 </head>
 <body>
-    <h1>Music List: </h1>
-    <div></div>
-    <div></div>
-    <div></div>
-    <a href="songs/S1001/video.mp4">S001</a><audio src="songs/S1001/audio.mp3" controls></audio>
-    <br>
-    <a href="songs/S1002/video.mp4">S002</a><audio src="songs/S1002/audio.mp3" controls></audio>
-    <br>
-    <a href="songs/S1003/video.mp4">S003</a><audio src="songs/S1003/audio.mp3" controls></audio>
-    <br>
-    <a href="songs/S1004/video.mp4">S004</a><audio src="songs/S1004/audio.mp3" controls></audio>
+    <header>
+        <nav>
+            <h1>🎵 一班の歌</h1>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> 首页</a>
+                <a href="#"><i class="fas fa-music"></i> 发现</a>
+                <a href="#"><i class="fas fa-star"></i> 收藏</a>
+                <a href="#"><i class="fas fa-user"></i> 我的</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <table class="song-list">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>歌曲名称</th>
+                    <th style="width: 40%;">简介</th>
+                    <th style="width: 150px;">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>狒狒</td>
+                    <td>生物竞赛我们赛场较量</td>
+                    <td>
+                        <button class="action-btn play-audio" onclick="playAudio(1)">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="action-btn play-mv" onclick="playMV(1)">
+                            <i class="fas fa-video"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>我没写复印件</td>
+                    <td>无奈但美好的校园爱情</td>
+                    <td>
+                        <button class="action-btn play-audio" onclick="playAudio(2)">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="action-btn play-mv" onclick="playMV(2)">
+                            <i class="fas fa-video"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>#lcxj#</td>
+                    <td>芒果都赞叹自己的文采</td>
+                    <td>
+                        <button class="action-btn play-audio" onclick="playAudio(3)">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="action-btn play-mv" onclick="playMV(3)">
+                            <i class="fas fa-video"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>定比点差传奇</td>
+                    <td>今天你用定比点差了吗</td>
+                    <td>
+                        <button class="action-btn play-audio" onclick="playAudio(4)">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="action-btn play-mv" onclick="playMV(4)">
+                            <i class="fas fa-video"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <div id="audio-controller">
+        <div class="controller-content">
+            <button class="action-btn play-audio" id="play-pause-btn" onclick="togglePlay()">
+                <i class="fas fa-play"></i>
+            </button>
+            
+            <div style="flex: 2;">
+                <div id="progress-bar" onclick="seek(event)">
+                    <div id="progress"></div>
+                </div>
+                <div class="time-display">
+                    <span id="current-time">00:00</span> / 
+                    <span id="total-time">00:00</span>
+                </div>
+            </div>
+
+            <div class="volume-container">
+                <i class="fas fa-volume-up volume-icon" id="volume-icon" onclick="toggleMute()"></i>
+                <input type="range" id="volume" min="0" max="1" step="0.1" value="1" 
+                       oninput="updateVolume(this.value)">
+            </div>
+
+            <select id="speed" onchange="setSpeed(this.value)">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+            </select>
+
+            <label style="display: flex; align-items: center; gap: 5px;">
+                <input type="checkbox" id="loop" onchange="toggleLoop()">
+                <span style="color: #666;">循环</span>
+            </label>
+        </div>
+    </div>
+
+    <script>
+        let currentAudio = null;
+        let isPlaying = false;
+        let lastVolume = 1;
+
+        function playAudio(songId) {
+            const controller = document.getElementById('audio-controller');
+            const btn = document.getElementById('play-pause-btn');
+            
+            // 如果正在播放同一首歌则切换播放状态
+            if(currentAudio && currentAudio.src.endsWith(`${songId}.mp3`)) {
+                togglePlay();
+                return;
+            }
+
+            // 停止当前播放的音频
+            if(currentAudio) {
+                currentAudio.pause();
+            }
+
+            // 显示控制器
+            controller.style.bottom = '0';
+            
+            // 创建新的音频对象
+            currentAudio = new Audio(`${songId}.mp3`);
+            currentAudio.play();
+            isPlaying = true;
+            btn.innerHTML = '<i class="fas fa-pause"></i>';
+
+            // 绑定时间更新事件
+            currentAudio.addEventListener('timeupdate', updateProgress);
+            
+            // 播放结束处理
+            currentAudio.addEventListener('ended', () => {
+                if(currentAudio.loop) {
+                    currentAudio.play();
+                } else {
+                    isPlaying = false;
+                    btn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+        }
+
+        function playMV(songId) {
+            window.open(`${songId}.mp4`, '_blank', 'width=800,height=450');
+        }
+
+        function togglePlay() {
+            const btn = document.getElementById('play-pause-btn');
+            if(!currentAudio) return;
+            
+            if(isPlaying) {
+                currentAudio.pause();
+                btn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                currentAudio.play();
+                btn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function updateProgress() {
+            const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+            document.getElementById('current-time').textContent = formatTime(currentAudio.currentTime);
+            document.getElementById('total-time').textContent = formatTime(currentAudio.duration);
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            seconds = Math.floor(seconds % 60);
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function updateVolume(value) {
+            currentAudio.volume = value;
+            lastVolume = value;
+            currentAudio.muted = false;
+            
+            const icon = document.getElementById('volume-icon');
+            icon.className = value == 0 ? 
+                'fas fa-volume-mute volume-icon' : 
+                (value < 0.5 ? 
+                    'fas fa-volume-down volume-icon' : 
+                    'fas fa-volume-up volume-icon');
+        }
+
+        function toggleMute() {
+            currentAudio.muted = !currentAudio.muted;
+            const icon = document.getElementById('volume-icon');
+            
+            if(currentAudio.muted) {
+                icon.className = 'fas fa-volume-mute volume-icon';
+                document.getElementById('volume').value = 0;
+            } else {
+                currentAudio.volume = lastVolume;
+                document.getElementById('volume').value = lastVolume;
+                updateVolume(lastVolume);
+            }
+        }
+
+        function setSpeed(value) {
+            currentAudio.playbackRate = parseFloat(value);
+        }
+
+        function toggleLoop() {
+            currentAudio.loop = document.getElementById('loop').checked;
+        }
+
+        function seek(event) {
+            if(!currentAudio) return;
+            
+            const progressBar = document.getElementById('progress-bar');
+            const rect = progressBar.getBoundingClientRect();
+            const pos = (event.clientX - rect.left) / rect.width;
+            currentAudio.currentTime = pos * currentAudio.duration;
+        }
+    </script>
 </body>
 </html>
