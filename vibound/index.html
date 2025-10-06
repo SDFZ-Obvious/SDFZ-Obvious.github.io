@@ -1,137 +1,282 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vi bound</title>
+    <title>专业乐理音程训练器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .pulse-correct { animation: pulseCorrect 1s; }
+        @keyframes pulseCorrect {
+            0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 to-purple-800 min-h-screen text-white">
+    <div class="container mx-auto px-4 py-12 max-w-2xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-2">🎼 专业音程识别训练</h1>
+            <p class="text-xl opacity-80">精确识别标准音程关系</p>
+        </header>
+
+        <main class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-xl">
+            <div id="question-container" class="text-center mb-10">
+                <div class="text-6xl font-bold mb-4 h-20 flex items-center justify-center">
+                    <span id="note1" class="mx-2">C</span>
+                    <span id="note2" class="mx-2">E</span>
+                </div>
+                <p class="text-lg opacity-80">这两个音符之间的标准音程是？</p>
+                <p id="interval-info" class="text-lg mt-2">
+                    音数: <span id="tone-count">0</span> | 
+                    半音数: <span id="semitone-count">0</span>
+                </p>
+            </div>
+
+            <div id="options-container" class="grid grid-cols-2 gap-4 mb-8"></div>
+
+            <div id="feedback-container" class="hidden text-center p-4 rounded-lg mb-6">
+                <p id="feedback-text" class="text-xl font-semibold"></p>
+            </div>
+
+            <div class="text-center">
+                <button id="next-btn" class="hidden bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full transition-all">
+                    下一题 <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
     <script>
-        !function(){
+        // 标准音程类型
+        const standardIntervals = [
+            '纯一度', '小二度', '大二度', '小三度', '大三度', 
+            '纯四度', '增四度', '减五度', '纯五度', '小六度', 
+            '大六度', '小七度', '大七度', '纯八度',
+            '增一度', '增二度', '增三度', '增五度',
+            '增六度', '增七度', '增八度',
+            '减二度', '减三度', '减四度', '减六度',
+            '减七度', '减八度',
+            '倍增一度', '倍增二度', '倍增三度', '倍增四度',
+            '倍增五度', '倍增六度', '倍增七度', '倍增八度',
+            '倍减二度', '倍减三度', '倍减四度', '倍减五度',
+            '倍减六度', '倍减七度', '倍减八度'
+        ];
+
+        // 音符名称和字母顺序
+        const noteNames = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B'];
+        const letterOrder = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
         
-       function n(n,e,t){
-        
-       return n.getAttribute(e)||t
-        
-       }
-        
-       function e(n){
-        
-       return document.getElementsByTagName(n)
-        
-       }
-        
-       function t(){
-        
-       var t=e("script"),o=t.length,i=t[o-1];
-        
-       return{
-        
-       l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
-        
-       }
-        
-       }
-        
-       function o(){
-        
-       a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
-        
-       c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
-        
-       }
-        
-       function i(){
-        
-       r.clearRect(0,0,a,c);
-        
-       var n,e,t,o,m,l;
-        
-       s.forEach(function(i,x){
-        
-       for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
-        
-       null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
-        
-       l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),  
-       t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
-        
-       }),
-       
-       x(i)
-        
-       }
-        
-       var a,c,u,m=document.createElement("canvas"),
-        
-       d=t(),l="c_n"+d.l,r=m.getContext("2d"),
-      x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
-        
-       function(n){
-       
-       window.setTimeout(n,1e3/45)  
-       },
-        
-       w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
-        
-       window.onmousemove=function(n){
-        
-       n=n||window.event,y.x=n.clientX,y.y=n.clientY
-        
-       },
-        
-       window.onmouseout=function(){
-        
-       y.x=null,y.y=null
-        
-       };
-        
-       for(var s=[],f=0;d.n>f;f++){
-        
-       var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
-        
-       }
-        
-       u=s.concat([y]),
-        
-       setTimeout(function(){i()},100)
-        
-       }();
-        
-       </script>
-       <script type="text/x-mathjax-config">
-         MathJax.Hub.Config({
-             tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true},
-             TeX: {equationNumbers: {autoNumber: ["AMS"],useLabelIds: true}},
-             "HTML-CSS": {linebreaks: {automatic: true},scale: 85},
-             SVG: {linebreaks: {automatic: true}}
-         });
-      </script>
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-      </script>
-    <link rel="stylesheet" href="css\font.css">
-    <link rel="stylesheet" href="css\theme.css">
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        // 半音规则：BC和EF之间是半音
+        const semitonePairs = ['B-C', 'E-F'];
+
+        // 当前问题数据
+        let currentQuestion = {
+            note1: '', note2: '', 
+            correctInterval: '', 
+            toneCount: 0, 
+            semitoneCount: 0
+        };
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            generateQuestion();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('next-btn').addEventListener('click', () => {
+                document.getElementById('feedback-container').classList.add('hidden');
+                document.getElementById('next-btn').classList.add('hidden');
+                generateQuestion();
+            });
+        }
+
+        // 生成新问题
+        function generateQuestion() {
+            const index1 = Math.floor(Math.random() * noteNames.length);
+            let index2;
+            do {
+                index2 = index1 + Math.floor(Math.random() * 13) - 6;
+            } while (index2 === index1 || index2 < 0 || index2 >= noteNames.length);
+            
+            currentQuestion.note1 = noteNames[index1];
+            currentQuestion.note2 = noteNames[index2];
+            
+            const result = calculateStandardInterval(currentQuestion.note1, currentQuestion.note2);
+            currentQuestion.correctInterval = result.interval;
+            currentQuestion.toneCount = result.toneCount;
+            currentQuestion.semitoneCount = result.semitoneCount;
+            
+            updateUI();
+            generateOptions();
+        }
+
+        // 计算标准音程
+        function calculateStandardInterval(note1, note2) {
+            // 获取基础字母和升降信息
+            const baseNote1 = note1.replace(/[#b]/, '');
+            const baseNote2 = note2.replace(/[#b]/, '');
+            const isSharp1 = note1.includes('#');
+            const isFlat1 = note1.includes('b');
+            const isSharp2 = note2.includes('#');
+            const isFlat2 = note2.includes('b');
+            
+            // 计算字母距离（度数）
+            let letterIndex1 = letterOrder.indexOf(baseNote1);
+            let letterIndex2 = letterOrder.indexOf(baseNote2);
+            
+            // 处理八度调整
+            let octaveAdjust = 0;
+            if (letterIndex1 > letterIndex2) {
+                letterIndex2 += 7; // 升高八度
+                octaveAdjust = 12;
+            }
+            
+            let toneCount = 0;
+            if (letterIndex1 == letterIndex2 && (isSharp1 && !isSharp2 || isFlat2 && !isFlat1)){
+                letterIndex2 += 7; // 升高八度
+                toneCount += 6;
+            }
+            
+            const degree = letterIndex2 - letterIndex1 + 1;
+            // 计算音数（忽略升降号）
+            
+            let currentLetter = baseNote1;
+            let targetLetter = baseNote2;
+            
+            // 遍历字母顺序计算音数
+            while (currentLetter !== targetLetter) {
+                const nextLetter = letterOrder[(letterOrder.indexOf(currentLetter) + 1) % 7];
+                const interval = `${currentLetter}-${nextLetter}`;
+                
+                if (semitonePairs.includes(interval)) {
+                    toneCount += 0.5; // BC或EF之间是半音
+                } else {
+                    toneCount += 1; // 其他是全音
+                }
+                
+                currentLetter = nextLetter;
+            }
+            
+            // 调整音数（考虑升降号）
+            if (isSharp1) toneCount -= 0.5;
+            if (isFlat2) toneCount -= 0.5;
+            if (isFlat1) toneCount += 0.5;
+            if (isSharp2) toneCount += 0.5;
+            
+            // 计算半音数
+            let semitoneCount = Math.round(toneCount * 2);
+            
+            // 根据度数和半音数确定音程性质
+            return {
+                interval: getIntervalQuality(degree, semitoneCount),
+                toneCount: toneCount.toFixed(1),
+                semitoneCount: semitoneCount
+            };
+        }
+
+        // 根据度数和半音数确定音程性质
+        function getIntervalQuality(degree, semitoneCount) {
+            console.log(degree);
+            console.log(semitoneCount);
+            const intervalMap = {
+                1: {0:'纯一度', 1:'增一度', 2:'倍增一度'},
+                2: {0:'减二度', 1:'小二度', 2:'大二度', 3:'增二度', 4:'倍增二度'},
+                3: {1:'倍减三度',2:'减三度', 3:'小三度', 4:'大三度', 5:'增三度', 6:'倍增三度'},
+                4: {3:'倍减四度', 4:'减四度', 5:'纯四度', 6:'增四度', 7:'倍增四度'},
+                5: {5:'倍减五度', 6:'减五度', 7:'纯五度', 8:'增五度', 9:'倍增五度', 10:'倍增五度'},
+                6: {6:'倍减六度', 7:'减六度', 8:'小六度', 9:'大六度', 10:'增六度', 11:'倍增六度'},
+                7: {8:'倍减七度', 9:'减七度', 10:'小七度', 11:'大七度', 12:'增七度', 13:'倍增七度'},
+                8: {10:'倍减八度', 11:'减八度', 12:'纯八度', 13:'增八度', 14:'倍增八度'}
+            };
+            
+            return intervalMap[degree]?.[semitoneCount] || '纯八度';
+        }
+
+        // 更新UI
+        function updateUI() {
+            document.getElementById('note1').textContent = currentQuestion.note1;
+            document.getElementById('note2').textContent = currentQuestion.note2;
+            document.getElementById('tone-count').textContent = currentQuestion.toneCount;
+            document.getElementById('semitone-count').textContent = currentQuestion.semitoneCount;
+        }
+
+        // 生成选项按钮
+        function generateOptions() {
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            
+            // 创建包含正确答案的选项数组
+            let options = [currentQuestion.correctInterval];
+            
+            // 添加3个随机错误选项
+            while (options.length < 4) {
+                const randomIndex = Math.floor(Math.random() * standardIntervals.length);
+                const randomOption = standardIntervals[randomIndex];
+                
+                if (!options.includes(randomOption)) {
+                    options.push(randomOption);
+                }
+            }
+            
+            // 打乱选项顺序
+            options = shuffleArray(options);
+            
+            // 创建选项按钮
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'bg-white/20 hover:bg-white/30 py-4 px-6 rounded-lg text-lg font-medium transition-all';
+                button.textContent = option;
+                button.addEventListener('click', () => checkAnswer(option));
+                container.appendChild(button);
+            });
+        }
+
+        // 检查答案
+        function checkAnswer(selectedOption) {
+            const isCorrect = selectedOption === currentQuestion.correctInterval;
+            const feedbackContainer = document.getElementById('feedback-container');
+            const feedbackText = document.getElementById('feedback-text');
+            
+            if (isCorrect) {
+                feedbackContainer.className = 'bg-green-500/30 text-center p-4 rounded-lg mb-6';
+                feedbackText.textContent = '✓ 正确！';
+                document.querySelectorAll('#options-container button').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === selectedOption) {
+                        btn.classList.add('bg-green-500/50', 'pulse-correct');
+                    }
+                });
+            } else {
+                feedbackContainer.className = 'bg-red-500/30 text-center p-4 rounded-lg mb-6';
+                feedbackText.textContent = `✗ 错误！正确答案是: ${currentQuestion.correctInterval}`;
+                document.querySelectorAll('#options-container button').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === selectedOption) {
+                        btn.classList.add('bg-red-500/50');
+                    } else if (btn.textContent === currentQuestion.correctInterval) {
+                        btn.classList.add('bg-green-500/50', 'pulse-correct');
+                    }
+                });
+            }
+            
+            feedbackContainer.classList.remove('hidden');
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
+
+        // 辅助函数：打乱数组
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
     </script>
-<body>
-   <header>
-        <div style="width: 1400px;margin: 0px auto;">
-            <a href="https://SDFZ-Obvious.github.io/florr"><img src="img/00007-2071169488.png" alt="" id="block_hd_img" width="47px" height="47px"></a>
-            <a href="include/blogs.html"><div id="block_hd">Blogs</div></a>
-            <a href="include/slides.html"><div id="block_hd">Documents</div></a>
-            <a href="include/app.html"><div id="block_hd">Team</div></a>
-            <a href="include/about.html"><div id="block_hd">About</div></a>
-        </div>
-   </header>
-   <article>
-    <h1 style="text-align: center;">欢迎来到 Vi bound 的开发主页！</h1>
-    <h2>Summary</h2>
-    <p>那就先介绍一下吧。我是济南振声学校的菜鸡 Oier，Vi bound 是我和同学最近搞得一个小项目。Vi bound 项目的目的是将我们学校的教学楼及其周边环境建立 3D 模型，然后开发成一款游戏。当然，游戏的 mode 还没想好，还需要大家的意见。</p>
-   </article>
-   <footer>
-        <div style="text-align:center;padding-top: 100px;">
-            <p>SDFZ_Obvious的花园</p>
-            <p>Powered by <a href="">GitHub</a></p>
-        </div>
-   </footer>
 </body>
 </html>
