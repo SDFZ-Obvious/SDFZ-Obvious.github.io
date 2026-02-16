@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>日语平假名练习</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #a8edea, #fed6e3);
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .transition-all {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+<div id="quiz-container" class="w-full max-w-md bg-white rounded-xl card-shadow p-6 text-center transition-all transform hover:scale-[1.02]">
+    <h1 class="text-2xl md:text-3xl font-bold mb-6 text-indigo-700">日语平假名练习</h1>
+
+    <!-- 显示题目 -->
+    <div id="hiragana-display" class="flex justify-around my-6">
+        <span class="text-5xl font-semibold text-gray-800"></span>
+        <span class="text-5xl font-semibold text-gray-800"></span>
+        <span class="text-5xl font-semibold text-gray-800"></span>
+    </div>
+
+    <!-- 用户输入区 -->
+    <input type="text"
+           id="answer-input"
+           placeholder="请输入罗马音（如：ninbenchi）"
+           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-lg text-center"/>
+
+    <!-- 提交按钮 -->
+    <button onclick="checkAnswer()"
+            class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 rounded-lg shadow transition duration-300">
+        提交答案
+    </button>
+
+    <!-- 下一题按钮，默认隐藏 -->
+    <button onclick="nextQuestion()" id="next-btn"
+            class="hidden mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg shadow transition duration-300">
+        下一题 →
+    </button>
+
+    <!-- 回答结果展示 -->
+    <div id="result-message" class="my-4 min-h-[2rem] text-lg font-semibold"></div>
+
+    <!-- 正确答案显示 -->
+    <div id="correct-answer" class="text-sm italic hidden text-gray-600 mt-2"></div>
+</div>
+
+<script>
+    const hiraganaMap = {
+        "あ": "a", "い": "i", "う": "u", "え": "e", "お": "o",
+        "か": "ka", "き": "ki", "く": "ku", "け": "ke", "こ": "ko",
+        "さ": "sa", "し": "shi", "す": "su", "せ": "se", "そ": "so",
+        "た": "ta", "ち": "chi", "つ": "tsu", "て": "te", "と": "to",
+        "な": "na", "に": "ni", "ぬ": "nu", "ね": "ne", "の": "no",
+        "は": "ha", "ひ": "hi", "ふ": "fu", "へ": "he", "ほ": "ho",
+        "ま": "ma", "み": "mi", "む": "mu", "め": "me", "も": "mo",
+        "や": "ya", "ゆ": "yu", "よ": "yo",
+        "ら": "ra", "り": "ri", "る": "ru", "れ": "re", "ろ": "ro",
+        "わ": "wa", "を": "wo", "ん": "n"
+    };
+
+    let currentHiraganas = [];
+    let correctRomaji = [];
+
+    function generateRandomHiragana() {
+        const keys = Object.keys(hiraganaMap);
+        const selected = [];
+        while (selected.length < 3) {
+            const randomKey = keys[Math.floor(Math.random() * keys.length)];
+            if (!selected.includes(randomKey)) {
+                selected.push(randomKey);
+            }
+        }
+        return selected;
+    }
+
+    function loadNewQuestion() {
+        document.getElementById("answer-input").value = "";
+        document.getElementById("result-message").innerText = "";
+        document.getElementById("correct-answer").classList.add("hidden");
+        document.getElementById("next-btn").classList.add("hidden");
+
+        currentHiraganas = generateRandomHiragana();
+        correctRomaji = currentHiraganas.map(k => hiraganaMap[k]);
+
+        const spans = document.querySelectorAll("#hiragana-display span");
+        for (let i = 0; i < spans.length; i++) {
+            spans[i].textContent = currentHiraganas[i];
+        }
+    }
+
+    function checkAnswer() {
+        const userInput = document.getElementById("answer-input").value.trim().toLowerCase();
+
+        // 合并三个假名的标准读音作为比较标准
+        const expectedFullString = correctRomaji.join("");
+
+        if (userInput === expectedFullString) {
+            showResultMessage("✅ 全部正确！", "#2ecc71");
+            document.getElementById("next-btn").classList.remove("hidden");
+        } else {
+            analyzeErrors(userInput);
+        }
+    }
+
+    function analyzeErrors(inputStr) {
+        const userChars = inputStr.split("");
+        const expectedChars = [...correctRomaji[0], ...correctRomaji[1], ...correctRomaji[2]];
+        const errorIndices = [];
+
+        for (let i = 0; i < Math.max(expectedChars.length, userChars.length); i++) {
+            if ((expectedChars[i] || null) !== (userChars[i] || null)) {
+                errorIndices.push(i);
+            }
+        }
+
+        let message = `❌ 第 ${errorIndices.map(idx => idx+1).join(",")} 个字母错误`;
+        showResultMessage(message, "#e74c3c");
+
+        // 显示正确答案
+        const answerDiv = document.getElementById("correct-answer");
+        answerDiv.textContent = `正确答案是: ${correctRomaji.join("")}`;
+        answerDiv.classList.remove("hidden");
+    }
+
+    function showResultMessage(msg, color) {
+        const resultBox = document.getElementById("result-message");
+        resultBox.innerText = msg;
+        resultBox.style.color = color;
+    }
+
+    function nextQuestion() {
+        loadNewQuestion();
+    }
+
+    window.onload = () => {
+        loadNewQuestion();
+    };
+</script>
+
+</body>
+</html>
