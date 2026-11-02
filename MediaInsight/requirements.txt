@@ -1,0 +1,12 @@
+requests>=2.31
+numpy>=2.0
+pandas>=2.2
+matplotlib>=3.9
+openpyxl>=3.1
+qrcode[pil]>=7.4
+pillow>=10
+jieba>=0.42
+google-auth>=2.30
+google-auth-oauthlib>=1.2
+google-api-python-client>=2.130
+pyinstaller>=6.10
