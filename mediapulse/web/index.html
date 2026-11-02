@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>MediaPulse · 脉策 — 自媒体数据驾驶舱</title>
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<div class="boot" id="boot">
+  <div class="boot-inner">
+    <div class="boot-logo">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M2 13h4l2.2-6 3.1 11L14 10l2 3h6" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h1>MEDIAPULSE</h1>
+    <p>正在启动本地数据驾驶舱 · 脉策</p>
+    <div class="boot-bar"></div>
+  </div>
+</div>
+
+<div class="app hidden" id="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M2 13h4l2.2-6 3.1 11L14 10l2 3h6" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="brand-name">MediaPulse</div>
+        <div class="brand-sub">脉策 · Creator OS</div>
+      </div>
+    </div>
+
+    <div class="account-switch" id="account-switch">
+      <div class="account-row">
+        <div class="avatar" id="active-avatar">M</div>
+        <div style="min-width:0">
+          <div class="account-name" id="active-name">载入中</div>
+          <div class="account-meta" id="active-meta">—</div>
+        </div>
+        <div class="account-caret">▾</div>
+      </div>
+      <div class="account-menu hidden" id="account-menu"></div>
+    </div>
+
+    <div class="nav-label">Workspace</div>
+    <nav class="nav" id="nav">
+      <a class="nav-item active" data-page="overview" href="#overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        数据总览
+      </a>
+      <a class="nav-item" data-page="content" href="#content">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M3 9h5" stroke-linecap="round"/></svg>
+        内容分析
+      </a>
+      <a class="nav-item" data-page="growth" href="#growth">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l5-5 4 3 8-9" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6h4v4" stroke-linecap="round"/></svg>
+        粉丝增长
+      </a>
+      <a class="nav-item" data-page="traffic" href="#traffic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l6 3.4M12 12l-6 3.4" stroke-linecap="round"/></svg>
+        流量洞察
+      </a>
+      <div class="nav-sep"></div>
+      <div class="nav-label">Strategy</div>
+      <a class="nav-item" data-page="timing" href="#timing">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
+        发布策略
+      </a>
+      <a class="nav-item" data-page="retention" href="#retention">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 18V8m5 10v-6m5 6V4m5 14v-9" stroke-linecap="round"/><path d="M3 21h18" stroke-linecap="round"/></svg>
+        留存诊断
+      </a>
+      <a class="nav-item" data-page="lab" href="#lab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3h6M10 3v6.5L4.8 18a2 2 0 001.7 3h11a2 2 0 001.7-3L14 9.5V3" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.5 15h9" stroke-linecap="round"/></svg>
+        选题实验室
+      </a>
+      <div class="nav-sep"></div>
+      <a class="nav-item" data-page="reports" href="#reports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2h9l4 4v16H6V2z"/><path d="M15 2v4h4M9 11h7M9 15h7M9 19h4" stroke-linecap="round"/></svg>
+        报表中心
+      </a>
+      <a class="nav-item" data-page="settings" href="#settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 01-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.5 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 01-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 012.8-2.8l.1.1a1.7 1.7 0 001.9.3h.1a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 012.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9v.1a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
+        账号与设置
+      </a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="local-chip"><span class="local-dot"></span> 数据仅保存在本机 · 本地分析</div>
+      <div class="version"><span id="version-label">v1.0.0</span><span>PULSE ENGINE</span></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="mobile-menu" id="mobile-menu" aria-label="菜单">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+      </button>
+      <div class="top-title">
+        <div class="eyebrow" id="page-eyebrow">WORKSPACE / OVERVIEW</div>
+        <h1 id="page-title">数据总览</h1>
+      </div>
+      <div class="top-actions">
+        <div class="range-seg" id="range-seg">
+          <button data-days="7">7天</button>
+          <button data-days="30" class="active">30天</button>
+          <button data-days="90">90天</button>
+          <button data-days="180">180天</button>
+        </div>
+        <div class="job-pill hidden" id="job-pill"><span id="job-text">同步中</span><span class="bar"><i id="job-bar" style="width:0%"></i></span></div>
+        <button class="btn" id="sync-btn" title="同步最新数据">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11a8 8 0 10-2.3 5.7M20 4v7h-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>同步数据</span>
+        </button>
+        <button class="btn primary" id="report-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>导出报告</span>
+        </button>
+        <div class="avatar" id="top-avatar" style="width:30px;height:30px;border-radius:9px;font-size:11px">M</div>
+      </div>
+    </header>
+
+    <main class="view" id="view">
+      <div class="sk-page">
+        <div class="sk-row"><div class="skeleton sk-card"></div><div class="skeleton sk-card"></div><div class="skeleton sk-card"></div><div class="skeleton sk-card"></div><div class="skeleton sk-card"></div><div class="skeleton sk-card"></div></div>
+        <div class="skeleton sk-hero"></div>
+        <div class="skeleton sk-chart"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div id="modal-root"></div>
+<div class="toast-root" id="toast-root"></div>
+
+<script src="/vendor/echarts.min.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

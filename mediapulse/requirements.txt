@@ -1,0 +1,5 @@
+# Runtime uses only the Python standard library.
+# These are needed for building the Windows exe / reports:
+pyinstaller>=6.16
+pillow>=11
+openpyxl>=3.1
