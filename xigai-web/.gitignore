@@ -1,0 +1,9 @@
+# Local export and test artifacts
+/slides-export/
+/media/
+/slides/
+/.chrome-*/
+/test-*.png
+/cdp-test*.mjs
+/.cdp-*.mjs
+*.log

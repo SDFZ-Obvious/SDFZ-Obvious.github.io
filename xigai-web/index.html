@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a111b">
+  <meta name="description" content="全球气候变化谈判与气候债务议题——课程小组汇报。25 页交互式演示文稿，支持目录、文字稿检索、全屏放映与键盘操作。">
+  <meta property="og:title" content="全球气候变化谈判与气候债务议题">
+  <meta property="og:description" content="发达国家历史排放责任，气候正义，中国“双碳”的大国担当。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-cover.jpg">
+  <title>全球气候变化谈判与气候债务议题</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/slides/slide-01.webp" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="is-loading">
+  <a class="skip-link" href="#stage">跳至幻灯片</a>
+
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.5"/>
+      <path d="M3.5 12h17M12 3.5c2.8 2.4 2.8 14.6 0 17M12 3.5c-2.8 2.4-2.8 14.6 0 17"/>
+    </symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="7" height="7" rx="1.4"/>
+      <rect x="13.5" y="3.5" width="7" height="7" rx="1.4"/>
+      <rect x="3.5" y="13.5" width="7" height="7" rx="1.4"/>
+      <rect x="13.5" y="13.5" width="7" height="7" rx="1.4"/>
+    </symbol>
+    <symbol id="i-text" viewBox="0 0 24 24">
+      <path d="M6 3.5h7.5L18 8v12.5H6z"/>
+      <path d="M13.5 3.5V8H18M9 12h6M9 16h6"/>
+    </symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24">
+      <path d="M8.5 3.5h-5v5M15.5 3.5h5v5M20.5 15.5v5h-5M3.5 15.5v5h5"/>
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24">
+      <path d="M12 3.5v11.5M12 15l4.5-4.5M12 15l-4.5-4.5M4.5 20.5h15"/>
+    </symbol>
+    <symbol id="i-left" viewBox="0 0 24 24">
+      <path d="M14.5 5 7.5 12l7 7"/>
+    </symbol>
+    <symbol id="i-right" viewBox="0 0 24 24">
+      <path d="M9.5 5l7 7-7 7"/>
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <path d="M8 5.2v13.6L19 12z" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24">
+      <rect x="7" y="5" width="3.6" height="14" rx="1" fill="currentColor" stroke="none"/>
+      <rect x="13.4" y="5" width="3.6" height="14" rx="1" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6 6 18"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5"/>
+      <path d="m15.5 15.5 4.5 4.5"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M7 17 17 7M8 7h9v9"/>
+    </symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24">
+      <rect x="7" y="2.5" width="10" height="19" rx="2.5"/>
+      <path d="M10.5 18.5h3"/>
+    </symbol>
+  </svg>
+
+  <div class="boot" id="boot">
+    <div class="boot-inner">
+      <span class="boot-mark">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-globe"></use></svg>
+      </span>
+      <span class="boot-kicker">CLIMATE DEBT · 2026</span>
+      <p class="boot-title">正在载入演示文稿</p>
+      <div class="boot-track"><span></span></div>
+    </div>
+  </div>
+
+  <div class="app" id="app">
+    <header class="topbar">
+      <a class="brand" href="#slide-1" aria-label="回到封面">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-globe"></use></svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-kicker">CLIMATE NEGOTIATION · 2026</span>
+          <span class="brand-title">气候债务与全球治理</span>
+        </span>
+      </a>
+
+      <div class="top-actions" role="group" aria-label="演示工具">
+        <button class="tool" type="button" id="overviewBtn" aria-haspopup="dialog" title="目录（O）">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-grid"></use></svg>
+          <span class="tool-label">目录</span>
+        </button>
+        <button class="tool" type="button" id="transcriptBtn" aria-haspopup="dialog" title="文字稿（T）">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-text"></use></svg>
+          <span class="tool-label">文字稿</span>
+        </button>
+        <button class="tool" type="button" id="fullscreenBtn" title="全屏（F）">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-expand"></use></svg>
+          <span class="tool-label">全屏</span>
+        </button>
+        <span class="tool-sep" aria-hidden="true"></span>
+        <a class="tool tool-icon" href="download/xi-gai.pptx" download title="下载原始 PPTX">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"></use></svg>
+          <span class="sr-only">下载原始 PPTX</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="stage-shell">
+        <section class="stage" id="stage" aria-roledescription="幻灯片" aria-label="演示文稿">
+          <div class="frame" id="frame">
+            <div class="slide-layer is-active" id="layerA">
+              <img id="slideA" src="assets/slides/slide-01.webp"
+                   alt="第 1 页：封面。全球气候变化谈判与气候债务议题。"
+                   width="2560" height="1440" fetchpriority="high" decoding="async">
+            </div>
+            <div class="slide-layer" id="layerB">
+              <img id="slideB" alt="" width="2560" height="1440" decoding="async">
+            </div>
+
+            <div class="stage-loader" id="stageLoader" hidden>
+              <span class="spinner" aria-hidden="true"></span>
+              <span>载入页面…</span>
+            </div>
+
+            <button class="edge edge-prev" type="button" id="edgePrev" aria-label="上一页">
+              <span class="edge-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-left"></use></svg></span>
+            </button>
+            <button class="edge edge-next" type="button" id="edgeNext" aria-label="下一页">
+              <span class="edge-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-right"></use></svg></span>
+            </button>
+
+            <div class="autoplay-track" id="autoplayTrack" aria-hidden="true"><span id="autoplayFill"></span></div>
+          </div>
+        </section>
+
+        <p class="portrait-hint">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-rotate"></use></svg>
+          横屏观看，版式更完整
+        </p>
+      </div>
+    </main>
+
+    <footer class="deckbar">
+      <div class="chapter">
+        <span class="chapter-dot" aria-hidden="true"></span>
+        <span class="chapter-section" id="sectionLabel">序</span>
+        <span class="chapter-sep" aria-hidden="true">/</span>
+        <span class="chapter-title" id="slideTitle">封面</span>
+      </div>
+
+      <div class="transport" role="group" aria-label="翻页控制">
+        <button class="round-btn" type="button" id="prevBtn" aria-label="上一页" aria-keyshortcuts="ArrowLeft">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-left"></use></svg>
+        </button>
+        <div class="timeline" id="timeline" role="group" aria-label="幻灯片进度"></div>
+        <button class="round-btn" type="button" id="nextBtn" aria-label="下一页" aria-keyshortcuts="ArrowRight">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-right"></use></svg>
+        </button>
+      </div>
+
+      <div class="status">
+        <span class="counter" aria-label="页码">
+          <b id="currentNum">01</b><span class="counter-sep">/</span><span class="counter-total">25</span>
+        </span>
+        <button class="round-btn play-btn" type="button" id="playBtn" aria-label="自动播放" aria-pressed="false" title="自动播放">
+          <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"></use></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pause"></use></svg>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Slide overview -->
+  <div class="overlay overview-overlay" id="overviewOverlay" aria-hidden="true">
+    <div class="overlay-scrim" data-close="overview"></div>
+    <section class="sheet overview-sheet" role="dialog" aria-modal="true" aria-labelledby="overviewTitle">
+      <header class="sheet-head">
+        <div class="sheet-heading">
+          <span class="eyebrow">ALL SLIDES</span>
+          <h2 id="overviewTitle">幻灯片目录</h2>
+        </div>
+        <div class="sheet-head-right">
+          <span class="sheet-meta">25 页 · 4 个章节</span>
+          <button class="icon-btn" type="button" data-close="overview" aria-label="关闭目录">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"></use></svg>
+          </button>
+        </div>
+      </header>
+      <div class="overview-scroll">
+        <div class="overview-grid" id="overviewGrid"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Transcript drawer -->
+  <div class="overlay drawer-overlay" id="transcriptOverlay" aria-hidden="true">
+    <div class="overlay-scrim" data-close="transcript"></div>
+    <aside class="sheet transcript-sheet" role="dialog" aria-modal="true" aria-labelledby="transcriptTitle">
+      <header class="sheet-head transcript-head">
+        <div class="sheet-heading">
+          <span class="eyebrow">TRANSCRIPT</span>
+          <h2 id="transcriptTitle">文字稿</h2>
+        </div>
+        <button class="icon-btn" type="button" data-close="transcript" aria-label="关闭文字稿">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </header>
+
+      <div class="search-wrap">
+        <label class="search-box" for="transcriptSearch">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-search"></use></svg>
+          <input id="transcriptSearch" type="search" placeholder="搜索观点、数据或关键词" autocomplete="off" spellcheck="false">
+          <button class="search-clear" type="button" id="searchClear" aria-label="清除搜索" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"></use></svg>
+          </button>
+        </label>
+        <p class="search-meta" id="searchMeta" aria-live="polite">共 25 页 · 点击标题跳转</p>
+      </div>
+
+      <div class="transcript-list" id="transcriptList"></div>
+
+      <footer class="transcript-foot">
+        <a class="download-link" href="download/xi-gai.pptx" download>
+          <span class="download-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"></use></svg></span>
+          <span class="download-copy"><b>下载原始 PPTX</b><small>保留全部可编辑内容 · 8.2 MB</small></span>
+          <svg class="download-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"></use></svg>
+        </a>
+      </footer>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="sr-only" id="announcer" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">本演示需要启用 JavaScript 才能播放。请在浏览器设置中启用后刷新页面。</div>
+  </noscript>
+
+  <script src="data/slides.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
